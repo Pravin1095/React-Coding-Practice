@@ -25,6 +25,8 @@ const DisplayData = () => {
   ]);
 
   const [addedData, setAddedData] = useState("");
+  items.sort((a,b)=>a-b)
+  console.log("check items", items)
 
   const handleDelete = (deletedData) => {
     const newItems = items.filter((data) => data !== deletedData);

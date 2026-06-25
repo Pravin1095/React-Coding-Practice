@@ -19,7 +19,5 @@ export const useFetchData = ({ url }) => {
     handleGetData();
   }, []);
 
-  console.log("data in hook", data);
-
   return { data, loading };
 };

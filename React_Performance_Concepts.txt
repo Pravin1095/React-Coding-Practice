@@ -1,0 +1,88 @@
+Memoization:
+
+Optimization technique that executes a pure function once, and saves the result in the memory. If we try to execute that function again with same arguments as before, the previously saved result will be returned, without executing the function again
+
+Pure function : 
+A pure function is a foundational concept in functional programming. A function is considered pure if it meets two strict criteria:
+1. Identical Input -> Identical Output: It always returns the exact same result if you pass it the exact same arguments. It doesn’t depend on any state or data that changes outside of its own scope.
+
+2. No Side Effects: It does not modify any state outside of its own environment or interact with the "outside world" (like modifying a global variable, changing an object passed by reference, or making an API call).
+
+Examples for pure function:
+
+// Pure
+function add(a, b) {
+  return a + b;
+}
+
+Examples for impure function:
+
+// Impure Example 1: Depends on external, mutable state
+let tax = 0.05;
+function calculateTotal(price) {
+  return price + (price * tax); // If 'tax' changes elsewhere, the output changes for the same input!
+}
+
+// Impure Example 2: Produces a Side Effect
+let userCount = 0;
+function greetUser(name) {
+  userCount++; // Modifying a variable outside the function is a side effect!
+  return `Hello, ${name}`;
+}
+
+In React, we can use this concept of memoization to
+
+1. Memoize React components using React.memo
+2. Memoize functions using useCallback
+3. Memoize objects using useMemo
+
+React.memo:
+Used to create a component that will not re-render when its parent re-renders, as long as the prop stay the same between renders
+Regular behavior : If parent re-renders , child also re-renders in React
+Memoized child with memo : Will not re-render with same props
+
+
+Example syntax:
+
+const App = () => {
+  const [theme, setTheme] = useState("light"); // State is here!
+  const [show, setShow] = useState(false);
+
+  return (
+    <>
+      {/* If changing theme re-renders App, BOTH children re-render */}
+      <Product changeTheme={() => setTheme("dark")} /> 
+      <Archive show={show} /> 
+    </>
+  );
+};
+
+Here we can avoid Archive to re-render when theme changes inside App with memo
+
+const Archive  = memo(function Archive({show}){
+  return(
+    <>
+    </>
+  )
+})
+
+The Archive function renders only when show gets changed
+
+When to use this:
+When the component is heavy(slow rendering), rerenders often, and does so with the same props
+
+useMemo and useCallback:
+
+In React, when a page is re-rendered everything in it are recreated including the objects and the functions that are in it.
+
+If objects or functions are passed as props, the child component will always see them as new props on each re-render. As objects and functions are stored as reference.
+Solution : We need to memoize objects and functions to make them stable(preserve) between re-renders(memoized {} == memoized {}) . For this we use useMemo and useCallback.
+
+Used to memoize values and functions between renders. Values passed into useMemo and useCallback will be stored in memory("cached") and returned in subsequent re-renders, as long as dependencies (inputs) stay the same
+
+useMemo and useCallback have a dependency array: whenever one dependency changes, the value will be recreated
+
+Three Big UseCases:
+1. Memoizing props to prevent wasted renders(together with memo)
+2.Memoizing values to avoid expensive re-calculations on every render
+3.Memoizing values that are used in dependency array of another hook (With this we can avoid infinite useEffect loops)

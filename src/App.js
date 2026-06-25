@@ -1,6 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
 import Faqs from './components/Faqs';
+import TrafficLight from './components/TrafficLight';
+import InfiniteScroll from './components/InfiniteScroll';
+import SlowComponent, { OptimizedVersion } from './components/SlowCounter';
+import SlowCounter from './components/SlowCounter';
+import FetchUsers from './components/FetchUsers';
+import DisplayData from './components/DisplayData';
+import PerformanceApp from './PerformanceConcepts/App';
 
 function App() {
   return (
@@ -19,7 +26,14 @@ function App() {
           Learn React
         </a>
       </header> */}
-      <Faqs />
+      {/* <Faqs /> */}
+      {/* <TrafficLight /> */}
+      {/* <InfiniteScroll /> */}
+      {/* <SlowCounter /> */}
+      {/* <OptimizedVersion /> */}
+      {/* <DisplayData />
+      <FetchUsers /> */}
+      <PerformanceApp />
     </div>
   );
 }
