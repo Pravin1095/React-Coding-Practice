@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Product from "./Product";
 import Archive from "./Archive";
 
@@ -11,10 +11,22 @@ const PerformanceApp = () => {
 
   console.log("check theme", theme)
 
-  const sampleObjectAsProps = {
+  //As this is a normal const variable , react recreates this on every render, i.e whenever the theme state getting changed, because of this the prop passed sampleObjectAsProps is changed everytime in Archive, hence Aechive will be rendering every time as its prop now changes.
+
+  // const sampleObjectAsProps = {
+  //   show : false,
+  //   title : "Testing Archive"
+  // }
+
+  //To prevent the above problem, we use useMemo so that sampleObjectAsProps will not be recreated unless its dependency in useMemo gets changed
+
+  // We can test the result using Profiler in devtools
+  const sampleObjectAsProps = useMemo(()=>{
+    return {
     show : false,
     title : "Testing Archive"
   }
+  },[])
 
   return (
     <>
