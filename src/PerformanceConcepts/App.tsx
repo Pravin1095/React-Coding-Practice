@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
-import Product from "./Product";
-import Archive from "./Archive";
+import Product from "./Product.tsx";
+import Archive from "./Archive.tsx";
 
 // As theme changes Archive will also be re-rendered again and again whenever theme changes as when Parent renders Child will also be rendered.
 

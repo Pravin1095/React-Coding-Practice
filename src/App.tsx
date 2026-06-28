@@ -1,13 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
-import Faqs from './components/Faqs';
-import TrafficLight from './components/TrafficLight';
-import InfiniteScroll from './components/InfiniteScroll';
-import SlowComponent, { OptimizedVersion } from './components/SlowCounter';
-import SlowCounter from './components/SlowCounter';
-import FetchUsers from './components/FetchUsers';
-import DisplayData from './components/DisplayData';
-import PerformanceApp from './PerformanceConcepts/App';
+// import logo from './logo.svg';
+// import './App.css';
+import Faqs from './components/Faqs.js';
+import TrafficLight from './components/TrafficLight.js';
+import InfiniteScroll from './components/InfiniteScroll.js';
+// import SlowComponent, { OptimizedVersion } from './components/SlowCounter.js';
+import SlowCounter from './components/SlowCounter.js';
+import FetchUsers from './components/FetchUsers.js';
+import DisplayData from './components/DisplayData.js';
+import PerformanceApp from './PerformanceConcepts/App.tsx';
 
 function App() {
   return (

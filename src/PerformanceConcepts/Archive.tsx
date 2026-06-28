@@ -1,6 +1,11 @@
 import { memo } from "react"
 
-const Archive = memo(function ({show}){
+
+interface ArchiveProps{
+    show : boolean,
+    sampleObjectAsProps : {}
+}
+const Archive = memo(function ({show, sampleObjectAsProps} : ArchiveProps){
     const bigData = Array.from({length:1000},()=>'WORD')
     return(
 <>
